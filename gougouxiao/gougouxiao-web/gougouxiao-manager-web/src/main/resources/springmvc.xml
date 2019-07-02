@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 开启组件扫描 -->
+    <context:component-scan base-package="com.gougouxiao.manager.controller"/>
+    <!--开启mvc注解驱动-->
+    <mvc:annotation-driven >
+        <!-- 配置消息转换 -->
+        <mvc:message-converters>
+        <!-- 配置用fastjson作为json处理框架 如果使用jksion的话就不用配置这些，因为springmvc默认的就是jkson
+        @ResponseBody
+           使用FastJson比默认的jksion有个好处
+           如果页面上传过来的shi{}这个字符串，可以使用属性String封装
+            -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+            <!-- 配置支持的类型 -->
+                <property name="supportedMediaTypes"
+                      value="application/json;charset=UTF-8"/>
+             </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 因为是html静态页面，所以要配置静态资源用WEB容器默认的servlet来处理 -->
+    <mvc:default-servlet-handler/>
+    <!--因为是html页面，不是jsp所有不需要配置视图解析器，jsp一般是后台开发系统-->
+
+    <!-- ############## 配置dubbo服务消费者 ############## -->
+    <!--配置当前应用的名称-->
+    <dubbo:application name="gougouxiao-manager-web"/>
+    <!-- 配置zookeeper作为注册中心，注册服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="192.168.171.108:2181"/>
+    <!-- 配置采用包扫描来引用服务，产生服务接口的代理对象 -->
+    <dubbo:annotation package="com.gougouxiao.manager.controller"/>
+</beans>
