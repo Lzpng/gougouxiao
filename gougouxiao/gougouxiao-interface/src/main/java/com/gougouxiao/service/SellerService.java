@@ -1,11 +1,12 @@
 package com.gougouxiao.service;
 
+import com.gougouxiao.common.pojo.PageResult;
 import com.gougouxiao.pojo.Seller;
 
 import java.io.Serializable;
 import java.util.List;
 /**
- * SellerService 服务接口
+ * 商家审核 服务接口
  * @date 2019-06-29 15:38:23
  * @version 1.0
  */
@@ -30,6 +31,8 @@ public interface SellerService {
 	List<Seller> findAll();
 
 	/** 多条件分页查询 */
-	List<Seller> findByPage(Seller seller, int page, int rows);
+	PageResult findByPage(Seller seller, int page, int rows);
 
+	/**根据商家id修改状态*/
+	void updateStatus(String sellerId, String status);
 }

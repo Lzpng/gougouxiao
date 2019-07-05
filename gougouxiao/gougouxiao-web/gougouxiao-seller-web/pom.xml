@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>gougouxiao-web</artifactId>
+        <groupId>com.lzpng</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>gougouxiao-seller-web</artifactId>
+    <packaging>war</packaging>
+    <properties>
+        <!-- 覆盖父工程中的port属性 -->
+        <!--uriEncoding  URL按UTF-8进行编码，这样就解决了中文参数乱码-->
+        <!--<uriEncoding>UTF-8</uriEncoding>-->
+        <port>9102</port>
+    </properties>
+    <dependencies>
+        <!--文件上传，将二进制的数据转成文件对象，文件名称，文件大小进行封装-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <!--fasdFDS客户端-->
+        <dependency>
+            <groupId>org.csource</groupId>
+            <artifactId>fastdfs-client</artifactId>
+        </dependency>
+    </dependencies>
+</project>

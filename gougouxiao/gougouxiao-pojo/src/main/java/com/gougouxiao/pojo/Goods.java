@@ -62,6 +62,7 @@ public class Goods implements Serializable{
     /** 是否删除 */
 	@Column(name="is_delete")
     private String isDelete;
+
     /** 商品描述 */
 	@Transient
     private GoodsDesc goodsDesc;

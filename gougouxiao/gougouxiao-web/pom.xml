@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>gougouxiao-manager-web</module>
+        <module>gougouxiao-seller-web</module>
     </modules>
     <properties>
         <!-- tomcat端口号 -->
@@ -63,8 +64,12 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
         </dependency>
+        <!-- 配置shiro安全框架 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
     </dependencies>
-
     <!-- 构建部分 -->
     <build>
         <plugins>
